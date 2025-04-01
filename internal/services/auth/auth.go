@@ -111,7 +111,7 @@ func (a *Auth) Login(
 	return token, nil
 }
 
-func (a *Auth) RegistNewUser(
+func (a *Auth) RegisterNewUser(
 	ctx context.Context,
 	email string,
 	password string,

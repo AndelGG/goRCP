@@ -1,7 +1,7 @@
 package models
 
 type App struct {
-	Id     int
+	ID     int
 	Name   string
 	Secret string
 }
