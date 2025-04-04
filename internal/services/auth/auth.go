@@ -44,6 +44,7 @@ var (
 	ErrInvalidCredentials = errors.New("invalid credentials")
 	ErrInvalidAppID       = errors.New("invalid app id")
 	ErrUserExists         = errors.New("user already exists")
+	ErrUserNotFound       = errors.New("user not found")
 )
 
 // New creates a new Auth instance with the provided dependencies.
@@ -135,6 +136,8 @@ func (a *Auth) RegisterNewUser(
 			log.Warn("user already exists", sl.Err(err))
 			return 0, fmt.Errorf("%s: %w", op, ErrUserExists)
 		}
+		log.Error("failed to save user", sl.Err(err))
+		return 0, fmt.Errorf("%s: %w", op, err)
 	}
 
 	log.Info("user registered successfully", slog.Int64("userID", id))
